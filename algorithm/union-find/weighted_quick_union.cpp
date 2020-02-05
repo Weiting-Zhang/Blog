@@ -6,14 +6,17 @@ using namespace std;
 struct UF
 {
   vector<int> ids;
+  vector<int> sizes;
   int ct;
-  UF(int size)
+  UF(int len)
   {
-    ids = vector<int>(size, 0);
-    ct = size;
-    for (int i = 0; i < size; i++)
+    ids = vector<int>(len, 0);
+    sizes = vector<int>(len, 0);
+    ct = len;
+    for (int i = 0; i < len; i++)
     {
       ids[i] = i;
+      sizes[i] = 1;
     }
   }
 
@@ -25,7 +28,18 @@ struct UF
     {
       return;
     }
-    ids[fp] = ids[fq];
+    int sizep = sizes[fp];
+    int sizeq = sizes[fq];
+    if (sizep < sizeq)
+    {
+      ids[fp] = ids[fq];
+      sizes[fq] = sizep + sizeq;
+    }
+    else
+    {
+      ids[fq] = ids[fp];
+      sizes[fp] = sizep + sizeq;
+    }
     ct--;
   }
 

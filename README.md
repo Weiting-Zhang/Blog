@@ -12,7 +12,7 @@
 ## 算法
 
 - [Sort](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/sort)
-- [Union-Find 并查集](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/union-find)
+- [Union Find 并查集](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/union-find)
 
 ## 课程/读书笔记
 
