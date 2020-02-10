@@ -31,6 +31,7 @@ struct Graph
   }
 };
 
+// depth first search a graph
 struct DepthFirstSearch
 {
   vector<bool> marked;
