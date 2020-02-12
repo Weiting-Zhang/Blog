@@ -51,7 +51,6 @@ struct BreathFirstPaths
     edgeTo = vector<int>(G.vSize());
     marked= vector<bool>(G.vSize());
     queue<int> q;
-    // visit root
     marked[s] = true;
     q.push(s);
     while (!q.empty())
@@ -62,10 +61,10 @@ struct BreathFirstPaths
       {
         if (!marked[adj])
         {
-          // visit child
+          // visit parent
           marked[adj] = true;
           edgeTo[adj] = out;
-          // continue...
+          // enqueue child
           q.push(adj);
         }
       }

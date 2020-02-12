@@ -26,7 +26,8 @@ struct Graph
     return adjList[v];
   }
 
-  int vSize () {
+  int vSize()
+  {
     return size;
   }
 };
@@ -36,34 +37,43 @@ struct DepthFirstSearch
 {
   vector<bool> marked;
   int ct;
-  DepthFirstSearch(Graph G, int s) {
+  DepthFirstSearch(Graph G, int s)
+  {
     marked = vector<bool>(G.vSize(), false);
     dfs(G, s);
   }
 
-  void dfs(Graph G, int s) {
+  void dfs(Graph G, int s)
+  {
+    // visit root
     marked[s] = true;
     ct++;
-    for(int v : G.adjacent(s)) {
-      if (!marked[v]) {
+    for (int v : G.adjacent(s))
+    {
+      if (!marked[v])
+      {
+        // visit child
         dfs(G, v);
       }
     }
   }
 
-  bool checkMarked(int v) {
+  bool checkMarked(int v)
+  {
     return marked[v];
   }
 
   // the count connected to s
-  int count() {
+  int count()
+  {
     return ct;
   }
 };
 
-int main() {
+int main()
+{
   ifstream ReadFile;
-  FILE* fp;
+  FILE *fp;
   fp = freopen("algorithm/graph/undirected_graph/tinyG.txt", "r", stdin);
   int N;
   cin >> N;
@@ -79,14 +89,19 @@ int main() {
   cout << endl;
   int s = 9;
   DepthFirstSearch search = DepthFirstSearch(gh, s);
-  for (int i = 0; i < gh.vSize(); i++) {
-    if(search.checkMarked(i)) {
+  for (int i = 0; i < gh.vSize(); i++)
+  {
+    if (search.checkMarked(i))
+    {
       cout << "marked: " << i << endl;
     }
   }
-  if (search.count() == gh.vSize()) {
+  if (search.count() == gh.vSize())
+  {
     cout << "connected" << endl;
-  } else {
+  }
+  else
+  {
     cout << "not connected" << endl;
   }
 }

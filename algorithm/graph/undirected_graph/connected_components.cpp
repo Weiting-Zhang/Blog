@@ -26,7 +26,8 @@ struct Graph
     return adjList[v];
   }
 
-  int vSize () {
+  int vSize()
+  {
     return size;
   }
 };
@@ -42,8 +43,10 @@ struct CC
     int sz = G.vSize();
     ids = vector<int>(sz);
     marked = vector<bool>(sz);
-    for (int i = 0; i < sz; i++) {
-      if (!marked[i]) {
+    for (int i = 0; i < sz; i++)
+    {
+      if (!marked[i])
+      {
         dfs(G, i);
         _count++;
       }
@@ -55,8 +58,10 @@ struct CC
     // visit root
     marked[w] = true;
     ids[w] = _count;
-    for(int adj : G.adjacent(w)) {
-      if (!marked[adj]) {
+    for (int adj : G.adjacent(w))
+    {
+      if (!marked[adj])
+      {
         // visit child
         dfs(G, adj);
       }
@@ -79,9 +84,10 @@ struct CC
   }
 };
 
-int main() {
+int main()
+{
   ifstream ReadFile;
-  FILE* fp;
+  FILE *fp;
   fp = freopen("algorithm/graph/undirected_graph/tinyG.txt", "r", stdin);
   int N;
   cin >> N;
@@ -99,14 +105,17 @@ int main() {
   CC cc = CC(gh);
   int count = cc.count();
   cout << count << " components" << endl;
-  vector<vector<int> > counts;
-  counts = vector<vector<int> >(count);
-  for (int i = 0; i < gh.vSize(); i++) {
+  vector<vector<int>> counts;
+  counts = vector<vector<int>>(count);
+  for (int i = 0; i < gh.vSize(); i++)
+  {
     counts[cc.id(i)].push_back(i);
   }
-  for (int i = 0; i < counts.size(); i++) {
+  for (int i = 0; i < counts.size(); i++)
+  {
     cout << "id = " << i << ": ";
-    for (int v : counts[i]) {
+    for (int v : counts[i])
+    {
       cout << v << " ";
     }
     cout << endl;

@@ -26,7 +26,8 @@ struct Graph
     return adjList[v];
   }
 
-  int vSize () {
+  int vSize()
+  {
     return size;
   }
 };
@@ -38,7 +39,8 @@ struct DepthFirstPaths
   vector<bool> marked;
   int source;
   int sz;
-  DepthFirstPaths(Graph G, int s) {
+  DepthFirstPaths(Graph G, int s)
+  {
     edgeTo = vector<int>(G.vSize());
     marked = vector<bool>(G.vSize(), false);
     source = s;
@@ -46,23 +48,31 @@ struct DepthFirstPaths
     dfs(G, s);
   }
 
-  void dfs (Graph G, int w) {
+  void dfs(Graph G, int w)
+  {
+    // visit root
     marked[w] = true;
-    for(int v : G.adjacent(w)) {
-      if (!marked[v]) {
+    for (int v : G.adjacent(w))
+    {
+      if (!marked[v])
+      {
+        // visit child
         edgeTo[v] = w;
         dfs(G, v);
       }
     }
   }
 
-  bool hasPathTo(int w) {
+  bool hasPathTo(int w)
+  {
     return marked[w];
   }
 
-  vector<int> pathTo(int v) {
+  vector<int> pathTo(int v)
+  {
     vector<int> path;
-    for (int x = v; x != source; x = edgeTo[x]) {
+    for (int x = v; x != source; x = edgeTo[x])
+    {
       path.push_back(x);
     }
     path.push_back(source);
@@ -73,7 +83,7 @@ struct DepthFirstPaths
 int main()
 {
   ifstream ReadFile;
-  FILE* fp;
+  FILE *fp;
   fp = freopen("algorithm/graph/undirected_graph/tinyG.txt", "r", stdin);
   int N;
   cin >> N;
@@ -89,10 +99,13 @@ int main()
   cout << endl;
   int s = 0;
   DepthFirstPaths path = DepthFirstPaths(gh, 0);
-  for (int i = 0; i < gh.vSize(); i++) {
-    if(path.hasPathTo(i)) {
+  for (int i = 0; i < gh.vSize(); i++)
+  {
+    if (path.hasPathTo(i))
+    {
       cout << "path to " << i << endl;
-      for(int x: path.pathTo(i)) {
+      for (int x : path.pathTo(i))
+      {
         cout << x << " ";
       }
       cout << endl;
