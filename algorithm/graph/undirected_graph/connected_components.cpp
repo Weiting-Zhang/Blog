@@ -105,8 +105,8 @@ int main()
   CC cc = CC(gh);
   int count = cc.count();
   cout << count << " components" << endl;
-  vector<vector<int>> counts;
-  counts = vector<vector<int>>(count);
+  vector<vector<int> > counts;
+  counts = vector<vector<int> >(count);
   for (int i = 0; i < gh.vSize(); i++)
   {
     counts[cc.id(i)].push_back(i);
