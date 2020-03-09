@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <string>
 using namespace std;
 
 struct UF
@@ -58,7 +58,8 @@ int main()
 {
   int N = 10;
   UF uf = UF(N);
-  while (cin)
+  string str;
+  while (getline(cin, str))
   {
     int p, q;
     cin >> p;

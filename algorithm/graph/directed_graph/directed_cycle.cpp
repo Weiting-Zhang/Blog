@@ -1,6 +1,7 @@
 #include "vector"
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 // declaration of Digraph
@@ -99,7 +100,8 @@ int main()
   int N;
   cin >> N;
   Digraph DG = Digraph(N);
-  while (cin)
+  string str;
+  while (getline(cin, str))
   {
     int v, w;
     cin >> v;

@@ -1,11 +1,12 @@
 #include "vector"
+#include "stack"
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
 
 // declaration of Digraph
-// copy from digraph.cpp 
+// copy from digraph.cpp
 class Digraph
 {
 private:
@@ -22,46 +23,57 @@ public:
   Digraph reverse();
 };
 
-class DirectedDFS
+struct DepthFirstOrder
 {
-private:
-  vector<bool> _marked;
-  void dfs(Digraph G, int s);
-
-public:
-  DirectedDFS(Digraph G, int s);
-  bool marked(int v);
-};
-
-DirectedDFS::DirectedDFS(Digraph G, int s)
-{
-  _marked = vector<bool>(G.V());
-  dfs(G, s);
-}
-
-bool DirectedDFS::marked(int v)
-{
-  return _marked[v];
-}
-
-void DirectedDFS::dfs(Digraph G, int s)
-{
-    _marked[s] = true;
-    for (int w : G.adjacent(s))
+  vector<bool> marked;
+  vector<int> _pre;
+  vector<int> _post;
+  stack<int> _reversePost;
+  DepthFirstOrder(Digraph G)
+  {
+    marked = vector<bool>(G.V());
+    for (int i = 0; i < G.V(); i++)
     {
-      if (!_marked[w])
-      {
-        dfs(G, w);
+      if (!marked[i]) {
+        dfs(G, i);
       }
     }
-  
-}
+  }
+
+  void dfs(Digraph G, int w)
+  {
+    marked[w] = true;
+    _pre.push_back(w);
+    for (int i : G.adjacent(w))
+    {
+      if (!marked[i])
+      {
+        dfs(G, i);
+      }
+    }
+    _post.push_back(w);
+    _reversePost.push(w);
+  }
+
+  vector<int> pre()
+  {
+    return _pre;
+  }
+
+  vector<int> post() {
+    return _post;
+  }
+
+  stack<int> reversePost() {
+    return _reversePost;
+  }
+};
 
 int main()
 {
   ifstream ReadFile;
   FILE *fp;
-  fp = freopen("algorithm/graph/directed_graph/tinyDG.txt", "r", stdin);
+  fp = freopen("algorithm/graph/directed_graph/tinyDG2.txt", "r", stdin);
   int N;
   cin >> N;
   Digraph DG = Digraph(N);
@@ -84,20 +96,31 @@ int main()
     }
   }
 
- int source = 0;
- DirectedDFS reachable = DirectedDFS(DG, source);
- cout << endl;
- cout << source << " marked: ";
- for (int i = 0; i < DG.V(); i++)
- {
-   if(reachable.marked(i)) {
-     cout << i << " ";
-   }
- }
+  int s = 0;
+  DepthFirstOrder order = DepthFirstOrder(DG);
+  vector<int> pre = order.pre();
+  vector<int> post = order.post();
+  stack<int> reversePost = order.reversePost();
+  cout << "pre: " << endl;
+  for (int i : pre)
+  {
+    cout << i << " ";
+  }
+  cout << endl << "post: " << endl;
+  for (int i : post)
+  {
+    cout << i << " ";
+  }
+
+  cout << endl << "reverse post: " << endl;
+  while(!reversePost.empty()){
+    cout << reversePost.top() << " ";
+    reversePost.pop();
+  }
 }
 
 // definition of Digraph
-// copy from digraph.cpp 
+// copy from digraph.cpp
 Digraph::Digraph(int N)
 {
   adjList = vector<vector<int> >(N);
@@ -137,5 +160,3 @@ Digraph Digraph::reverse()
   }
   return R;
 }
-
-

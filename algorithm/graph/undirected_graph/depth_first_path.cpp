@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -88,7 +89,8 @@ int main()
   int N;
   cin >> N;
   Graph gh = Graph(N);
-  while (cin)
+  string str;
+  while (getline(cin, str))
   {
     int v, w;
     cin >> v;
