@@ -15,16 +15,22 @@
 - [Union Find 并查集](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/union_find)
 - [图](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/graph)
   - [无向图](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/graph/undirected_graph)
-    - 图的表示
-    - 深度优先搜索
-    - 深度优先路径
-    - 广度优先搜索
-    - 广度优先路径
-    - 连通分量
-    - 判断环
-    - 着色问题
-  - 有向图
-    - 拓扑排序
+    - [x] 图的表示
+    - [x] 深度优先搜索
+    - [x] 深度优先路径
+    - [x] 广度优先搜索
+    - [x] 广度优先路径
+    - [x] 连通分量
+    - [x] 判断环
+    - [x] 着色问题
+    - [x] 最小生成树(MST)
+  - [有向图](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/graph/directed_graph)
+    - [x] 图的表示
+    - [x] 深度优先搜索
+    - [x] 深度优先路径
+    - [x] 广度优先搜索
+    - [x] 广度优先路径
+    - [x] 拓扑排序
 
 ## 课程/读书笔记
 
