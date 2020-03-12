@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="test-margin-auto title" style="color: #d64078">学习CSS布局</h2>
+      <h3 class="test-margin-auto title block">#1 margin: auto</h3>
+      <pre class="test-margin-auto code">
+  #main {
+    width: 600px;
+    margin: 0 auto;
+  }
+          </pre
+      >
+      <div class="test-margin-auto block content">
+        设置块级元素的 width
+        可以防止它从左到右撑满整个容器。然后你就可以设置左右外边距为 auto
+        来使其水平居中。元素会占据你所指定的宽度，然后剩余的宽度会一分为二成为左右外边距。
+        唯一的问题是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。让我们再来改进下这个方案...
+      </div>
+
+      <h3 class="test-max-width title block">#2 max-width</h3>
+      <pre class="test-max-width code">
+  #main {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+                </pre
+      >
+      <div class="test-max-width block content">
+        在这种情况下使用 max-width 替代 width
+        可以使浏览器更好地处理小窗口的情况。这点在移动设备上显得尤为重要，调整下浏览器窗口大小检查下吧！
+        顺便提下， 所有的主流浏览器包括IE7+在内都支持 max-width
+        ，所以放心大胆的用吧。
+      </div>
+      <h3 class="test-max-width title block">#3 盒模型</h3>
+      <pre class="test-max-width code">
+  .simple {
+    width: 500px;
+    margin: 20px auto;
+    box-sizing: content-box;
+  }
+  
+  .fancy {
+    width: 500px;
+    margin: 20px auto;
+    padding: 50px;
+    box-sizing: content-box;
+    border: solid #ee6b9b 3px;
+  }
+  </pre>
+    <div class="simple content-box">
+        simple: 我小一些。 content-box 的实际 width 为 content（500px） + padding（0） + border（0） =  500px
+    </div>
+    <div class="fancy content-box">
+      fancy: 我比他大！ content-box 的实际 width 为 content(500px) + padding(50px*2) + border(3px*2) = 606px
+    </div>
+    <div class="test-max-width block content">
+      以前有一个代代相传的解决方案是通过数学计算。CSS开发者需要用比他们实际想要的宽度小一点的宽度，需要减去内边距和边框的宽度。值得庆幸地是你不需要再这么做了...
+    </div>
+  </body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .container {
+    }
+    .test-margin-auto {
+      display: block;
+      width: 600px;
+      margin: 0 auto;
+    }
+    .code {
+      background: #333333;
+      color: rgb(41, 155, 130);
+      font-size: large;
+    }
+    .content {
+      border: solid #6ac5ac 3px;
+      font-size: large;
+    }
+    .title {
+      text-align: center;
+    }
+    .test-max-width {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .block {
+      margin-top: 20px;
+      padding: 7px;
+    }
+    .content-box {
+      box-sizing: content-box
+    }
+    .simple {
+      width: 500px;
+      margin: 20px auto;
+      background: #78d4bc;
+    }
+
+    .fancy {
+      width: 500px;
+      margin: 20px auto;
+      padding: 50px;
+      background: #78d4bc;
+      border: solid #ee6b9b 3px;
+    }
+  </style>
+</html>

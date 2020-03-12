@@ -12,7 +12,17 @@
 ## 算法
 
 - [Sort](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/sort)
+  - [x] 冒泡排序
+  - [x] 堆排序
+  - [x] 插入排序
+  - [x] 归并排序
+  - [x] 快速排序
+  - [x] 选择排序
 - [Union Find 并查集](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/union_find)
+  - [x] quick find
+  - [x] quick union
+  - [x] 加权的 quick union
+  - [x] 路径压缩的加权 quick union
 - [图](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/graph)
   - [无向图](https://github.com/Weiting-Zhang/Blog/tree/master/algorithm/graph/undirected_graph)
     - [x] 图的表示
