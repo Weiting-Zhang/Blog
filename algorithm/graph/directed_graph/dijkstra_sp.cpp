@@ -31,11 +31,6 @@ struct Edge
   {
     return _w;
   }
-
-  bool operator<(Edge e) const
-  {
-    return this->_weight > e._weight;
-  }
 };
 
 struct WeightedDigraph
@@ -84,11 +79,24 @@ struct WeightedDigraph
   }
 };
 
+struct CompareEdge {
+  Edge e;
+  double distTo;
+  CompareEdge(Edge _e, double _distTo) {
+    e = _e;
+    distTo = _distTo; 
+  }
+   bool operator<(CompareEdge e) const
+  {
+    return this-> distTo > e.distTo;
+  }
+};
+
 struct SP
 {
   vector<Edge> _edgeTo;
   vector<double> _distTo;
-  priority_queue<Edge> pq;
+  priority_queue<CompareEdge> pq;
   int _s;
   SP(WeightedDigraph G, int s)
   {
@@ -100,11 +108,12 @@ struct SP
     vector<Edge> adj = G.adj(s);
     for (Edge e : adj)
     {
-      pq.push(e);
+      pq.push(CompareEdge(e, e.weight()));
     }
     while (!pq.empty())
     {
-      Edge e = pq.top();
+      CompareEdge ce = pq.top();
+      Edge e = ce.e;
       pq.pop();
       double d1 = _distTo[e.to()];
       double d2 = _distTo[e.from()] + e.weight();
@@ -116,7 +125,7 @@ struct SP
         {
           if (_distTo[_e.to()] - DBL_MAX_EXP >= 0)
           {
-            pq.push(_e);
+            pq.push(CompareEdge(_e, _distTo[e.to()] + _e.weight()));
           }
         }
       }
