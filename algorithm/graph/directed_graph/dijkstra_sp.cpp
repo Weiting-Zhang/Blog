@@ -123,10 +123,7 @@ struct SP
         _edgeTo[e.to()] = e;
         for (Edge _e : G.adj(e.to()))
         {
-          if (_distTo[_e.to()] - DBL_MAX_EXP >= 0)
-          {
-            pq.push(CompareEdge(_e, _distTo[e.to()] + _e.weight()));
-          }
+          pq.push(CompareEdge(_e, _distTo[e.to()] + _e.weight()));
         }
       }
     }
